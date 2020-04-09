@@ -1,0 +1,27 @@
+Assumption:
+    - used http request to trigger an update
+    - used docker so that it runs everywhere
+    - exposed and used 8080 port for the app
+    - created endpoints to update second, minute and hour messages
+
+Requirement:
+    - docker
+
+How to run program:
+    1. create docker image:-    docker build -t clock .
+    2. execution:-              docker run -p 8080:8080 clock
+    3. update messages for second hour and minutes, please use following endpoints
+            to update second message - localhost:8080/secondmessage/quack
+            to update minute message - localhost:8080/minutemessage/quack
+            to update hour message - localhost:8080/hourmessage/quack
+
+    4. you can change the execution cycle of the program by updating cli flags in dockerfile
+        Dockerfile/line11: CMD ./tickerclock -secPMin=3 -secPHour=9 -deadline=18 -allowUpdate=10
+        so in this clock minute is of 3 second and hour is of 9 seconds. Clock ends in 18 seconds
+        and you can start updating clock message after 10 seconds
+
+    5. stop container once done testing in between execution, use "docker ps" to get container name,
+       then use "docker stop containername"
+
+       
+Thanks.
